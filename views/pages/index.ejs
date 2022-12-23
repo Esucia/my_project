@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EJS Templates</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      animation: fadeIn 1s;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    h2 {
+      margin: 20px 0;
+      color: #666;
+    }
+    ol {
+      list-style: none;
+      counter-reset: li;
+      margin: 0;
+      padding: 0;
+    }
+    ol > li {
+      position: relative;
+      margin: 10px 0;
+      padding: 10px 20px;
+      border-left: 2px solid #ccc;
+      animation: fadeIn 1s;
+    }
+    ol > li:before {
+      content: counter(li);
+      counter-increment: li;
+      position: absolute;
+      left: -2em;
+      top: 50%;
+      margin-top: -1em;
+      background: #ccc;
+      height: 2em;
+      width: 2em;
+      line-height: 2em;
+      text-align: center;
+      color: #fff;
+    }
+    pre {
+      margin: 10px 0;
+      padding: 10px;
+      background: #eee;
+      border-radius: 4px;
+      animation: fadeIn 1s;
+    }
+    code {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>EJS Templates</h1>
+  <p>EJS (Embedded JavaScript) is a templating language that allows you to embed JavaScript code in HTML documents. EJS templates are useful for generating dynamic HTML content on the server side, and are often used in Node.js applications.</p>
+  <h2>How to use EJS templates</h2>
+  <ol>
+    <li>Install the EJS package: <code>npm install ejs</code></li>
+    <li>Create an EJS template file with the desired HTML content, including placeholders for dynamic data. Placeholders are denoted with angle brackets, e.g. <code><%= variable.firstName %></code>.</li>
+    <li>In your Node.js application, require the EJS module and set the view engine to EJS:
+      <pre>
+app.set('view engine', 'ejs');
+      </pre>
+    </li>
+    <li>In your route handler, use the <code>res.render()</code> function to render the EJS template, passing in any dynamic data as an object:
+      <pre>
+res.render('template', { variable: data });
+      </pre>
+    </li>
+  </ol>
+  <h2>Example</h2>
+  <p>Here is an example of an EJS template that generates a list of items:</p>
+  <pre>
+&lt;ul&gt;
+  &lt;% items.forEach(function(item) { %&gt;
+    &lt;li&gt;&lt;%= item %&gt;&lt;/li&gt;
+  &lt;% }); %&gt;
+&lt;/ul&gt;
+  </pre>
+  <p>To render this template with an array of items, you could use the following code:</p>
+  <pre>
+res.render('template', { items: ['item 1', 'item 2', 'item 3'] });
+  </pre>
+  <p>This would generate the following HTML:</p>
+  <pre>
+&lt;ul&gt;
+  &lt;li&gt;item 1&lt;/li&gt;
+  &lt;li&gt;item 2&lt;/li&gt;
+  &lt;li&gt;item 3&lt;/li&gt;
+&lt;/ul&gt;
+  </pre>
+</body>
+</html>
